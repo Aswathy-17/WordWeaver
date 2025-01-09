@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Generation and Summarization</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Content Generation</h1>
+      <textarea
+        id="query"
+        placeholder="Enter your query for content generation"
+      ></textarea>
+      <button onclick="generateContent()">Generate Content</button>
+      <div id="generatedContent"></div>
+
+      <h1>Summarization</h1>
+      <textarea
+        id="contentToSummarize"
+        placeholder="Enter content to summarize"
+      ></textarea>
+      <button onclick="summarizeContent()">Summarize Content</button>
+      <div id="summarizedContent"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
