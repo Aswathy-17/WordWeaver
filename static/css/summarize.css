@@ -1,0 +1,83 @@
+.content-section {
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.content-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 2rem;
+}
+
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(15, 23, 42, 0.3);
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    min-height: 200px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+.output {
+    background: rgba(15, 23, 42, 0.3);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    min-height: 100px;
+    white-space: pre-wrap;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.loading {
+    color: var(--text-secondary);
+    font-style: italic;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.shortcut-hint {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .content-section {
+        margin: 1rem auto;
+    }
+    
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    textarea {
+        min-height: 150px;
+    }
+} 

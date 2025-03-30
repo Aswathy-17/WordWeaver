@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordWeaver - AI Writing Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="nav-brand">
+                <svg class="logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path class="logo-icon" d="M12 3c-1.5 0-2.7 1.2-2.7 2.7v3.6c0 1.5 1.2 2.7 2.7 2.7s2.7-1.2 2.7-2.7V5.7C14.7 4.2 13.5 3 12 3z"/>
+                    <path class="logo-icon" d="M12 12c-1.5 0-2.7 1.2-2.7 2.7v3.6c0 1.5 1.2 2.7 2.7 2.7s2.7-1.2 2.7-2.7v-3.6c0-1.5-1.2-2.7-2.7-2.7z"/>
+                    <path class="logo-icon" d="M3 12c0-1.5 1.2-2.7 2.7-2.7h3.6c1.5 0 2.7 1.2 2.7 2.7s-1.2 2.7-2.7 2.7H5.7C4.2 14.7 3 13.5 3 12z"/>
+                    <path class="logo-icon" d="M12 12c0-1.5 1.2-2.7 2.7-2.7h3.6c1.5 0 2.7 1.2 2.7 2.7s-1.2 2.7-2.7 2.7h-3.6c-1.5 0-2.7-1.2-2.7-2.7z"/>
+                </svg>
+                <span class="logo-text">WordWeaver</span>
+            </a>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}" class="nav-link active">Home</a>
+                <a href="{{ url_for('generate_page') }}" class="nav-link">Generate Content</a>
+                <a href="{{ url_for('summarize_page') }}" class="nav-link">Summarize Text</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">WordWeaver</h1>
+            <p class="hero-subtitle">Transform your ideas into compelling content with AI-powered writing assistance</p>
+            <p class="hero-description">
+                WordWeaver is an advanced AI writing assistant that helps you create engaging content and summarize complex texts. 
+                Whether you're a writer, student, or professional, our tools help you communicate more effectively.
+            </p>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-card">
+                <h2>Content Generation</h2>
+                <p>Create engaging articles, blog posts, and stories on any topic with our AI-powered content generator. Perfect for writers, marketers, and content creators.</p>
+                <a href="{{ url_for('generate_page') }}" class="feature-button">Start Creating</a>
+            </div>
+            <div class="feature-card">
+                <h2>Text Summarization</h2>
+                <p>Transform lengthy texts into clear, concise summaries. Ideal for research, study materials, and quick content digestion.</p>
+                <a href="{{ url_for('summarize_page') }}" class="feature-button">Start Summarizing</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                © 2025 WordWeaver. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

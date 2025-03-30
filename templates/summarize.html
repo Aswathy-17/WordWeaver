@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordWeaver - Text Summarization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/summarize.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="nav-brand">
+                <svg class="logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path class="logo-icon" d="M12 3c-1.5 0-2.7 1.2-2.7 2.7v3.6c0 1.5 1.2 2.7 2.7 2.7s2.7-1.2 2.7-2.7V5.7C14.7 4.2 13.5 3 12 3z"/>
+                    <path class="logo-icon" d="M12 12c-1.5 0-2.7 1.2-2.7 2.7v3.6c0 1.5 1.2 2.7 2.7 2.7s2.7-1.2 2.7-2.7v-3.6c0-1.5-1.2-2.7-2.7-2.7z"/>
+                    <path class="logo-icon" d="M3 12c0-1.5 1.2-2.7 2.7-2.7h3.6c1.5 0 2.7 1.2 2.7 2.7s-1.2 2.7-2.7 2.7H5.7C4.2 14.7 3 13.5 3 12z"/>
+                    <path class="logo-icon" d="M12 12c0-1.5 1.2-2.7 2.7-2.7h3.6c1.5 0 2.7 1.2 2.7 2.7s-1.2 2.7-2.7 2.7h-3.6c-1.5 0-2.7-1.2-2.7-2.7z"/>
+                </svg>
+                <span class="logo-text">WordWeaver</span>
+            </a>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('generate_page') }}" class="nav-link">Generate Content</a>
+                <a href="{{ url_for('summarize_page') }}" class="nav-link active">Summarize Text</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Text Summarization</h2>
+            <div class="input-group">
+                <textarea 
+                    id="text-to-summarize" 
+                    placeholder="Paste your text here to summarize (minimum 3 sentences recommended for better results)..."
+                ></textarea>
+                <button onclick="summarizeText()" id="summarize-btn">Summarize Text</button>
+            </div>
+            <div class="loading" id="loading">
+                Summarizing your text... Please wait...
+            </div>
+            <div class="output" id="summarized-text"></div>
+            <p class="shortcut-hint">Press Ctrl + Enter to summarize text</p>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                © 2024 WordWeaver. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function summarizeText() {
+            const text = document.getElementById('text-to-summarize').value;
+            const button = document.getElementById('summarize-btn');
+            const loading = document.getElementById('loading');
+            const output = document.getElementById('summarized-text');
+
+            if (!text) {
+                alert('Please enter text to summarize');
+                return;
+            }
+
+            try {
+                // Show loading state
+                button.disabled = true;
+                loading.classList.add('active');
+                output.innerHTML = '';
+
+                const response = await fetch('/api/summarize', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text }),
+                });
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                output.innerHTML = data.summary.replace(/\n/g, '<br>');
+            } catch (error) {
+                output.innerHTML = `<span style="color: var(--error-color)">Error summarizing text: ${error.message}</span>`;
+            } finally {
+                // Reset loading state
+                button.disabled = false;
+                loading.classList.remove('active');
+            }
+        }
+
+        // Add Ctrl+Enter shortcut for summarization
+        document.getElementById('text-to-summarize').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                summarizeText();
+            }
+        });
+    </script>
+</body>
+</html> 
